@@ -3,7 +3,7 @@ import Data.Set (Set(..))
 import qualified Data.Set as S
 
 
-operators :: [Float -> Float -> Float]
+operators :: [Double -> Double -> Double]
 operators = [(+), (-), (*), (/)]
 
 
@@ -11,11 +11,11 @@ combinations :: Int -> [a] -> [[a]]
 combinations k = filter ((== k) . length) . subsequences
 
 
-isReal :: Float -> Bool
+isReal :: Double -> Bool
 isReal x = not (isNaN x || isInfinite x)
 
 
-isInteger :: Float -> Bool
+isInteger :: Double -> Bool
 isInteger x = abs (x - fromIntegral (round x)) <= 1e-8
 
 
@@ -30,7 +30,7 @@ calcLongestConsecutiveLength digits =
     in firstMissing positiveIntegers
 
 
-performAllOperations :: [Float] -> Set Float
+performAllOperations :: [Double] -> Set Double
 performAllOperations digits =
     let calculatedValues = do
         [a, b, c, d] <- permutations digits
