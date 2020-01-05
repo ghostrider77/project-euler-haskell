@@ -3,7 +3,13 @@ import Data.List.Split (splitOn)
 import Data.Ord (Down(..))
 import System.IO
 
-data Number = Number { base :: Int, exponent :: Int } deriving Eq
+data Number = Number { base :: Int, exponent :: Int }
+
+instance Eq Number where
+    Number b1 e1 == Number b2 e2 =
+        let x = (fromIntegral e1) * log (fromIntegral b1)
+            y = (fromIntegral e2) * log (fromIntegral b2)
+        in abs (x - y) <= 1e-10
 
 instance Ord Number where
     Number b1 e1 <= Number b2 e2 =
