@@ -1,5 +1,4 @@
 import Data.List (subsequences, sort)
-import Data.Set (Set)
 import qualified Data.Set as S
 
 
@@ -13,11 +12,11 @@ isPrime n
 
 
 replaceDigits :: String -> [Int] -> [String]
-replaceDigits primeString mask = map replaceMaskWithSingleDigit chars
-    where
-        chars = ['0'..'9']
+replaceDigits primeString mask =
+    let chars = ['0'..'9']
         replaceMaskWithSingleDigit :: Char -> String
         replaceMaskWithSingleDigit c = map (\(d, ix) -> if ix `elem` mask then c else d) $ zip primeString [0..]
+    in map replaceMaskWithSingleDigit chars
 
 
 smallestPrimeOfFamily :: [Int] -> Int -> Int -> Maybe Int
