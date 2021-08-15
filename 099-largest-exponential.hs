@@ -27,6 +27,6 @@ findIndexOfLargest numbers = snd $ head $ sortBy (\(n, _) (m, _) -> compare (Dow
 
 main :: IO()
 main = do
-    content <- fmap lines (readFile "../resources/P0099_base_exp.dat")
+    content <- fmap lines (readFile "../resources/P0099.dat")
     let numbers = map lineToNumber content
     print $ findIndexOfLargest numbers
