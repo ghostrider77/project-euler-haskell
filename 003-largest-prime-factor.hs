@@ -11,7 +11,7 @@ findLargestPrimeFactor n =
             foldl (\(k, acc) l -> if k `mod` l /= 0 then (k, acc) else (removeFactor k l, l))
                   (n', start)
                   [3,5..upperLimit]
-    in if rest > 1 then n' else p
+    in if rest > 1 then rest else p
 
 
 main :: IO()
