@@ -15,7 +15,7 @@ digitFactorialSum :: Int -> Int
 digitFactorialSum limit = foldl (\acc k -> if suitable k then acc + k else acc) 0 [10..limit]
     where
         suitable :: Int -> Bool
-        suitable k = let digits = map (digitToInt) (show k) in k == (sum $ map (digitFactorials !) digits)
+        suitable k = let digits = map digitToInt (show k) in k == sum (map (digitFactorials !) digits)
 
 
 main :: IO()
