@@ -19,7 +19,7 @@ sumOfConsecutivePrimes limit = fst $ go (0, 0) primes
         go :: (Int, Int) -> [Int] -> (Int, Int)
         go acc [] = acc
         go acc @ (primeSum, longestLength) primelist =
-            let cumsums = takeWhile (<=limit) $ (scanl1 (+) primelist)
+            let cumsums = takeWhile (<=limit) $ scanl1 (+) primelist
                 (s, l) = head $ dropWhile (\(n, _) -> S.notMember n primeSet) $ reverse $ zip cumsums [1..]
                 acc' = if l > longestLength then (s, l) else acc
             in go acc' (tail primelist)
