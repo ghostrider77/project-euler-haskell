@@ -1,12 +1,11 @@
 import Data.Char (digitToInt)
 import Data.Vector (fromList, (!))
-import qualified Data.Vector as V
 
 
 champernownesConstantProduct :: [Int] -> Int
 champernownesConstantProduct indices =
     let len = last indices + 1
-        constant = V.take len $ fromList $ concat $ map show [0..]
+        constant = fromList $ take len $ concatMap show [0..]
     in product $ map (digitToInt . (constant !)) indices
 
 
