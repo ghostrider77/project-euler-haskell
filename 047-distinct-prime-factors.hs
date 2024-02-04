@@ -8,14 +8,15 @@ isPrime n
 
 
 hasKFactors :: Int -> Int -> [Int] -> Bool
-hasKFactors n k primes = go n 0 primes
+hasKFactors n k = go n 0
     where
         go :: Int -> Int -> [Int] -> Bool
+        go _ _ [] = error "No more prime numbers"
         go m nrFactors (p : ps)
             | p > m = nrFactors >= k
             | otherwise =
                 let (nrFactors', m') = if m `mod` p == 0 then (nrFactors + 1, m `div` p) else (nrFactors, m)
-                in if nrFactors' >= k then True else go m' nrFactors' ps
+                in (nrFactors' >= k) || go m' nrFactors' ps
 
 
 distinctPrimeFactors :: Int -> Int
