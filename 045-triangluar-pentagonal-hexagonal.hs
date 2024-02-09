@@ -3,7 +3,7 @@ import qualified Data.IntSet as S
 
 
 firstMultigonalNumber :: Int -> Int -> Int
-firstMultigonalNumber nH0 nP0 = go singletonSet nH0 nP0
+firstMultigonalNumber = go singletonSet
     where
         singletonSet = S.singleton 40755
         go :: IntSet -> Int -> Int -> Int

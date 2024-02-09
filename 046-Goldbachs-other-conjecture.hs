@@ -20,7 +20,7 @@ conjectureViolatingNumber = go (S.singleton 2) 3
             | condition primes n = n
             | otherwise = go primes (n + 2)
         condition :: IntSet -> Int -> Bool
-        condition primes n = all (\p -> S.notMember p primes) $ takeWhile (> 1) $ map (\k -> n - 2 * k ^ 2) [1..]
+        condition primes n = all (`S.notMember` primes) $ takeWhile (> 1) $ map (\k -> n - 2 * k ^ 2) [1..]
 
 
 main :: IO()

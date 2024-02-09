@@ -16,7 +16,7 @@ largestPandigitalPrime n = if isPrime n && isPandigital n then n else largestPan
     where
         isPandigital :: Int -> Bool
         isPandigital n =
-            let nrDigits = floor $ (logBase 10 $ fromIntegral n) + 1
+            let nrDigits = floor $ logBase 10 (fromIntegral n) + 1
                 digits = map digitToInt $ show n
             in sort digits == [1..nrDigits]
 

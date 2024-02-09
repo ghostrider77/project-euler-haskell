@@ -5,7 +5,7 @@ import qualified Data.IntSet as S
 
 
 variations :: Int -> [Int] -> [[Int]]
-variations k elems = concat $ map permutations $ filter ((== k) . length) $ subsequences elems
+variations k elems = concatMap permutations $ filter ((== k) . length) $ subsequences elems
 
 
 pandigitalProduct :: IntSet -> [Int] -> [Int] -> Int -> Maybe Int
