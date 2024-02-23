@@ -14,7 +14,6 @@ nrLargerNominators limit = go 2 0 (1, 3) (1, 2)
                 in go (k + 1) count' (n1, n2) (d1, d2)
 
 
-
 main :: IO()
 main = do
     let limit = 1000
