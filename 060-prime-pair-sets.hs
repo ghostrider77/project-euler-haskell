@@ -43,7 +43,7 @@ lowestPrimePairSetSum n =
         go :: [Int] -> Int -> Int
         go firstPrimes p =
             case calcCompatiblePrimes firstPrimes p of [] -> go (p : firstPrimes) (nextPrime p)
-                                                       cs -> head $ sort $ map sum cs
+                                                       cs -> minimum $ map sum cs
     in go initialPrimes (nextPrime r)
 
 
