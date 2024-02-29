@@ -1,12 +1,7 @@
 coinSums :: Int -> [Int] -> Int
 coinSums 0 _ = 1
 coinSums _ [] = 0
-coinSums amount (coin : rest) = go 0 0
-    where
-        go :: Int -> Int -> Int
-        go acc k =
-            let amount' = amount - k * coin
-            in if amount' < 0 then acc else go (acc + coinSums amount' rest) (k + 1)
+coinSums amount (coin : rest) = foldl (\acc amount' -> acc + coinSums amount' rest) 0 [amount,(amount-coin)..0]
 
 
 main :: IO()
