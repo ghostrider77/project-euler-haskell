@@ -4,7 +4,7 @@ nrProperReducedFractionsInRange limit = foldl (\acc d -> acc + calcNrFractionsIn
         calcNrFractionsInInterval :: Int -> Int
         calcNrFractionsInInterval d =
             let nMin = d `div` 3 + 1
-                nMax = if d `mod` 2 == 0 then d `div` 2 - 1 else d `div` 2
+                nMax = if even d then d `div` 2 - 1 else d `div` 2
             in foldl (\acc n -> if gcd n d == 1 then acc + 1 else acc) 0 [nMin..nMax]
 
 
