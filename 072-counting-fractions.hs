@@ -1,8 +1,8 @@
 import Data.Vector (Vector, freeze, generate, thaw)
 import qualified Data.Vector as V
 import qualified Data.Vector.Mutable as MV
-import Control.Monad.ST
-import Control.Monad (forM_)
+import Control.Monad.ST (ST, runST)
+import Control.Monad (forM_, when)
 
 
 nrProperReducedFractions :: Int -> Int
@@ -15,15 +15,14 @@ nrProperReducedFractions limit =
     in V.sum $ V.drop 2 phis
 
 
-calcPhiValuesUsingSieve :: (MV.MVector s Int) -> Int -> ST s ()
+calcPhiValuesUsingSieve :: MV.MVector s Int -> Int -> ST s ()
 calcPhiValuesUsingSieve v limit =
     forM_ [2..limit] $ \ix -> do
         x <- MV.read v ix
-        if x == ix then do
+        when (x == ix) $ do
             let indices = takeWhile (<= limit) $ map (*x) [1..]
             forM_ indices $ \jy -> do
-                MV.modify v (\y -> (y - (y `div` x))) jy
-        else return ()
+                MV.modify v (\y -> y - y `div` x) jy
 
 
 main :: IO()
