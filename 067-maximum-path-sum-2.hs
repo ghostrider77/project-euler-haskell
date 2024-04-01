@@ -6,7 +6,7 @@ convertToIntList = map read . words
 
 
 convertToMatrix :: [[Int]] -> Int -> Array (Int, Int) Int
-convertToMatrix rows n = listArray ((0, 0), (n - 1, n - 1)) $ concat $ map padwithZeros rows
+convertToMatrix rows n = listArray ((0, 0), (n - 1, n - 1)) $ concatMap padwithZeros rows
     where
         padwithZeros :: [Int] -> [Int]
         padwithZeros list = let len = length list in list ++ replicate (n - len) 0

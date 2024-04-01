@@ -2,10 +2,10 @@ data Fraction = Fraction { nominator :: Int, denominator :: Int }
 
 
 orderedFraction :: Int -> Int
-orderedFraction limit = a `div` (gcd a b)
+orderedFraction limit = a `div` gcd a b
     where
         Fraction a b = snd $ foldl processDenominators (1.0, Fraction 0 0) [1..limit]
-        threeOverSeven = fromInteger 3 / fromInteger 7
+        threeOverSeven = 3 / 7
         processDenominators :: (Double, Fraction) -> Int -> (Double, Fraction)
         processDenominators (minDist, Fraction nMin mMin) d =
             let n = (3 * d) `div` 7

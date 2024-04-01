@@ -31,7 +31,7 @@ smallestPrimeOfFamily primes nrDigits familySize = go primes
                 replacedPrimeDigitStrings =
                     map (\mask -> filter (\d -> S.member d primeStringSet) $ replaceDigits primeString mask) digitMasks
                 primeFamilies = filter ((== familySize) . length) replacedPrimeDigitStrings
-            in if null primeFamilies then go rest else Just $ head $ sort $ map read $ concat primeFamilies
+            in if null primeFamilies then go rest else Just $ minimum $ map read $ concat primeFamilies
 
 
 calcSmallestPrimeOfASameDigitReplacementFamily :: Int -> Int

@@ -25,7 +25,7 @@ generateCandidateSolutions figurateNumbers =
         go :: [[String]] -> [[String]] -> [[String]]
         go candidates [] = candidates
         go candidates (figurates : rest) =
-            let candidates' = concatMap (\candidate -> extend candidate figurates) candidates
+            let candidates' = concatMap (`extend` figurates) candidates
             in go candidates' rest
         candidateFigurateNumbers = go (map return $ head figurateNumbers) (tail figurateNumbers)
     in filter (\candidates -> drop 2 (head candidates) == take 2 (last candidates)) candidateFigurateNumbers

@@ -10,5 +10,5 @@ powerfulDigitCount limit = foldl findPowers 0 [1..limit]
 
 main :: IO()
 main = do
-    let limit = ceiling $ log 10 / (log (10 / 9))
+    let limit = ceiling $ logBase (10 / 9) 10
     print $ powerfulDigitCount limit

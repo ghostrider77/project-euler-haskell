@@ -14,7 +14,7 @@ checkNDigitCubes n nrPermutations =
                     acc' = M.insertWith (\(_, newCnt) (base, oldCnt) -> (base, oldCnt + newCnt)) kCubeDigits (k, 1) acc
                 in processNextBase (k + 1) acc'
             | otherwise =
-                let bases = sort $ map fst $ snd $ unzip $ M.toList $ M.filter (\(_, c) -> c == nrPermutations) acc
+                let bases = sort $ map (fst . snd) $ M.toList $ M.filter (\(_, c) -> c == nrPermutations) acc
                 in case bases of [] -> Nothing
                                  base : _ -> Just (base ^ 3)
     in processNextBase lowerLimit M.empty
