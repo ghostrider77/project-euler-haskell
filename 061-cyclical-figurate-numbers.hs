@@ -20,7 +20,7 @@ generateCandidateSolutions figurateNumbers =
     let extend :: [String] -> [String] -> [[String]]
         extend candidate figurates =
             let lastNumber = head candidate
-                nextNumbers = filter (\n -> (not $ n `elem` candidate) && drop 2 lastNumber == take 2 n) figurates
+                nextNumbers = filter (\n -> n `notElem` candidate && drop 2 lastNumber == take 2 n) figurates
             in map (\n -> n : candidate) nextNumbers
         go :: [[String]] -> [[String]] -> [[String]]
         go candidates [] = candidates
@@ -36,7 +36,7 @@ findCyclicalFigurateNumbers lower upper =
     let figurateNumbers = calcFigurateNumbers lower upper
         allPossibleFigurateOrder = permutations figurateNumbers
         candidates = concatMap generateCandidateSolutions allPossibleFigurateOrder
-        solution = head $ candidates
+        solution = head candidates
     in sum $ map read solution
 
 
