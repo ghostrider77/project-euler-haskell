@@ -15,8 +15,8 @@ calcPartitionNumber cache n = go 0 1
             let arg1 = n - k*(3*k - 1) `div` 2
                 arg2 = n - k*(3*k + 1) `div` 2
                 sign = if even k then -1 else 1
-                p1 = sign * (M.findWithDefault defaultValue arg1 cache)
-                p2 = sign * (M.findWithDefault defaultValue arg2 cache)
+                p1 = sign * M.findWithDefault defaultValue arg1 cache
+                p2 = sign * M.findWithDefault defaultValue arg2 cache
                 acc' = (acc + p1 + p2) `mod` modulus
             in if arg2 < 0 then acc' else go acc' (k + 1)
 

@@ -5,8 +5,8 @@ import Data.Array (Array, listArray, (!), range)
 convertToMatrix :: [String] -> Int -> Array (Int, Int) Int
 convertToMatrix rows n =
     let convertToIntList :: String -> [Int]
-        convertToIntList = map read . (splitOn ",")
-    in listArray ((0, 0), (n - 1, n - 1)) $ concat $ map convertToIntList rows
+        convertToIntList = map read . splitOn ","
+    in listArray ((0, 0), (n - 1, n - 1)) $ concatMap convertToIntList rows
 
 
 shortestPath :: Array (Int, Int) Int -> Int -> Int

@@ -9,12 +9,12 @@ type Node = (Int, Int)
 convertToMatrix :: [String] -> Int -> Array Node Int
 convertToMatrix rows n =
     let convertToIntList :: String -> [Int]
-        convertToIntList = map read . (splitOn ",")
-    in listArray ((0, 0), (n - 1, n - 1)) $ concat $ map convertToIntList rows
+        convertToIntList = map read . splitOn ","
+    in listArray ((0, 0), (n - 1, n - 1)) $ concatMap convertToIntList rows
 
 
 updateDistances :: Array Node Int -> Int -> Node -> Int -> Map Node Int -> Map Node Int -> (Map Node Int, Map Node Int)
-updateDistances matrix n (i, j) distU distances t = go neighbours distances t
+updateDistances matrix n (i, j) distU = go neighbours
     where
         validNode :: Node -> Bool
         validNode (i, j) = i >= 0 && i < n && j >= 0 && j < n
