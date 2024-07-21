@@ -53,7 +53,7 @@ findMostExpressiveFourDigits allDigits = go (0, []) fourDigits
         go (_, maxDigits) [] = maxDigits
         go (maxSequence, maxDigits) (digits : rest) =
             let result = calcLongestConsecutiveLength digits
-                acc = if (result > maxSequence) then (result, digits) else (maxSequence, maxDigits)
+                acc = if result > maxSequence then (result, digits) else (maxSequence, maxDigits)
             in go acc rest
 
 
